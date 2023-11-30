@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск по книгам</title>
+</head>
+<body>
+
+<form th:href="@{/books}" th:action="@{/books}">
+    <input type="submit" value="Назад к списку книг">
+</form>
+
+</br>
+
+<form th:action="@{/books/search}">
+    Введите поисковый запрос: <input type="text" name="request" id="request" size="50" th:value="${request}"/>
+    &nbsp;
+    <input type="submit" value="Поиск" />
+</form>
+
+</br>
+
+<div th:each="book : ${books}">
+    <a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}"></a>
+</div>
+
+<br/>
+<hr/>
+
+</body>
+</html>
